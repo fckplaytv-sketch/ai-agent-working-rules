@@ -33,7 +33,7 @@ A set of rules for anyone who runs a project through AI agents (Claude, Codex an
 
 1. **Before significant work, write down what the result should be and how it will be checked.** If that's clear from the request, the agent states it itself without waiting for approval. Why: without a criterion, "done" turns into "looks done."
 2. **Distinguish two levels: "verified by the agent" and "confirmed live."** The first means tests and a run in whatever environment the agent can reach. The second means the real result in the owner's working environment. Why: green tests with broken live behavior happen more often than you'd think.
-3. **No access to a live check doesn't stop the work, but you can't claim "confirmed live" either.** The honest status is "verified by the agent, awaiting live check." Why: waiting blocks progress, and an inflated status misleads.
+3. **No access to a live check doesn't stop the work, but you can't claim "confirmed live" either.** The honest status is "verified by the agent, awaiting live check." Likewise, "merged into the shared code" is not yet "working for the owner": say "done" only after it's deployed to the live environment. Why: waiting blocks progress, and an inflated status misleads.
 4. **Significant and risky changes go to a separate reviewer, who answers PASS or FAIL.** For small reversible edits, the author checks their own work in proportion to the risk. Why: authors see what they meant to do, not what they did.
 5. **The reviewer checks against the requirement and the observable result, not the author's report.** Why: a report describes intent, not fact.
 6. **Check the result where a human sees it, not what we sent.** Why: "we sent it correctly" and "the other system understood it correctly" are different things.
@@ -59,7 +59,7 @@ A set of rules for anyone who runs a project through AI agents (Claude, Codex an
 20. **Every bug the owner finds gets such a check or a written reproduction.** Why: the owner isn't a tester, and the same bug shouldn't reach them twice.
 21. **Fix the class of bug within the affected mechanism:** find related cases of the same kind and close them together. Don't turn a fix into an unrequested rewrite. Why: a filter for one phrase misses the next phrase with the same meaning, and rewrites "while we're at it" break things that worked.
 22. **For an open set (people's free-form phrases, names from outside sources), a fix based on a list of words or examples counts as "partial,"** and it needs a test with a word not on the list. Why: such a list is always shorter than real life. For a closed set (commands, codes, supported formats), a list is a complete solution.
-23. **State causes only once verified;** otherwise say "likely, not verified." Why: a guess presented as fact erodes trust when it turns out wrong.
+23. **State causes and facts only once verified;** otherwise say "likely, not verified." A technical state isn't a fact about the world: "lost connection to the computer" doesn't mean "the computer is asleep." Why: a guess presented as fact erodes trust when it turns out wrong.
 24. **Fix at the source, not with a blanket safeguard over all output.** Why: a blanket safeguard damages what was already correct.
 25. **A clever rule needs a fallback.** Why: a heuristic without a fallback breaks the neighboring case.
 26. **Recurring failures get fixed first.** Before new work, check the error log and the latest automated health report, if you have them.
@@ -104,8 +104,8 @@ A set of rules for anyone who runs a project through AI agents (Claude, Codex an
 
 51. **Short, in the owner's language, no jargon. Lead with the result.** The owner reads between other things, often on a phone.
 52. **Ask questions that can be answered in one word:** one line per option, with the recommended one marked.
-53. **Name things in a way the owner understands,** not with internal codes.
-54. **One voice (the coordinator) reports results;** details stay in the discussion of the specific task.
+53. **Name things in a way the owner understands,** not with internal codes. That includes the status and progress line: no hashes, file names or jargon.
+54. **One voice (the coordinator) reports results;** details stay in the discussion of the specific task. When a task finishes, the coordinator immediately relays the outcome in the main chat instead of leaving it only inside the task.
 55. **Don't promise what you can't deliver, and don't say "got it" without acting on it.**
 56. **State the cause of a failure once,** without replaying the whole investigation.
 57. **No panic and no endless second-guessing:** check, then say it as it is.
